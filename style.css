@@ -1,0 +1,190 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+     background-color: rgba(255, 228, 196, 0.498);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+    margin: 50px auto;
+    min-height: 100vh;
+}
+.quiz-container h1{
+    color: rgb(134, 80, 8);
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+.quiz-ques{
+  box-shadow: rgba(122, 75, 10, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(117, 84, 38, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 25px;
+  padding: 18px 25px;
+ width: 500px;
+ padding-bottom: 10px;
+
+}
+
+.radio-block{
+   
+    appearance: none;
+    -webkit-appearance: none;
+     margin-bottom: 10px;
+    border: 2px solid  #ccc !important;
+    padding: 8px 15px;
+   display: flex;
+   align-items: center;
+   gap: 15px;
+   border-radius: 6px;
+   cursor: pointer;
+   width: 95%;
+   box-sizing: border-box;
+   
+}
+
+button{
+    background-color:rgb(134, 80, 8) ;
+    color: rgb(255, 228, 196);
+    padding: 12px 20px !important;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: larger;
+    display: block;
+    margin: 50px auto;
+
+}
+
+.score{
+    white-space: nowrap;
+    font-size: 15px !important;
+    font-weight: 600;
+    border: 2px solid  rgb(134, 80, 8) ;
+    padding: 5px 12px;
+    border-radius: 8px;
+}
+
+input[type="radio"] {
+    -webkit-appearance: none; /* Default browser style hatane ke liye */
+    appearance: none;
+    
+    width: 20px;
+    height: 20px;
+    border: 2px solid black !important; /* Ab aapka border kaam karega */
+    border-radius: 50%; /* Is se yeh wapas gol (circle) ho jayega */
+    outline: none;
+    cursor: pointer;
+
+}
+input[type="radio"]:checked {
+    background-color: rgb(134, 80, 8);
+    flex-shrink: 0 !important;
+}
+
+@media (max-width:600px) {
+    body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+     background-color: rgba(255, 228, 196, 0.498);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin: 0;
+     min-height: 100vh;
+}
+.quiz-container{
+
+
+width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+    flex-direction: column !important;
+}
+.quiz-container h1{
+    color: rgb(134, 80, 8);
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+.quiz-ques{
+  box-shadow: rgba(122, 75, 10, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(117, 84, 38, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+ 
+  padding: 25px;
+
+ border-radius: 25px;
+ margin: 0 auto;
+ 
+width: 90% !important;
+    max-width: 380px !important;
+    box-sizing: border-box !important;
+
+ 
+
+}
+.quiz-ques p{
+    font-weight: 400 !important;
+}
+
+.score{
+    white-space: nowrap;
+    font-size: 15px !important;
+    font-weight: 600;
+    border: 2px solid  rgb(134, 80, 8) ;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+h5{
+    font-size: 15px !important;
+        white-space: nowrap;
+
+}
+
+.quiz-ques fieldset {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: block !important; 
+}
+input[type="radio"] {
+    -webkit-appearance: none; /* Default browser style hatane ke liye */
+    appearance: none;
+    
+    width: 20px;
+    height: 20px;
+    border: 2px solid black !important; /* Ab aapka border kaam karega */
+    border-radius: 50%; /* Is se yeh wapas gol (circle) ho jayega */
+    outline: none;
+    cursor: pointer;
+
+}
+input[type="radio"]:checked {
+    background-color: rgb(134, 80, 8);
+    flex-shrink: 0 !important;
+}
+.radio-block{
+   
+    appearance: none;
+    -webkit-appearance: none;
+     margin-bottom: 10px;
+    border: 2px solid  #ccc !important;
+    padding: 8px 15px;
+   display: flex;
+   align-items: center;
+   gap: 15px;
+   border-radius: 6px;
+   cursor: pointer;
+   width: 95%;
+   box-sizing: border-box;
+   
+}
+.quiz-ques fieldset label, 
+.quiz-ques fieldset p {
+    word-break: break-word !important; 
+}
+}
