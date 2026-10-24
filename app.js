@@ -1,4 +1,9 @@
-var questions = [
+   import { auth, db } from "./firebaseConfig.js";       
+   import { getDatabase, ref, set, push } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-database.js";      
+
+
+          
+          var questions = [
     {
         question: " What is html?",
         option1: "Hyper Text",
@@ -73,11 +78,27 @@ var questions = [
 
 
 ]
+// save questions to database
+function writeUserData() {
+  const db = getDatabase();
+  set(ref(db, 'quizQuestions') , questions) 
+  .then(() => {
+//   console.log("Data saved successfully!");
+ 
+})
+.catch((error) => {
+    console.log("error to save data!",error.message);
+});
+}
+writeUserData();
+
+// ques saved
+
 
 var count = 0;
 var scores = 0;
 
-var currentQuestion = questions[count]
+
 function playQuestion() {
     var cards = document.getElementById("quizQues")
     cards.innerHTML = `<fieldset class="mb-4">
@@ -99,15 +120,17 @@ function playQuestion() {
                    
 
                 </fieldset>
-                 <button onclick="onNext()">Next Question</button>`
+                 <button id="nextBtn">Next Question</button>`
+
+                 document.getElementById("nextBtn").addEventListener("click",nextQuestion)
 
 }
 playQuestion()
 
-function onNext() {
 
 
-    var correctQuestion = questions[count].correctAns;
+function nextQuestion(){
+ var correctQuestion = questions[count].correctAns;
     var checkedInput = document.querySelector('input[name="quiz"]:checked')
     if (checkedInput === null) {
         alert("Select the Answer");
@@ -128,39 +151,40 @@ function onNext() {
         correctInput.parentElement.style.backgroundColor = "#96FF96"
     }
 
-    count++;
-    document.getElementById("quesNo").innerText = count + 1;
+
 
     setTimeout(() => {
+            count++;
+    
 
         if (count < questions.length) {
-
+           document.getElementById("quesNo").innerText = count + 1;
             playQuestion();
         } else {
+           pushUserScore(scores)
 
-
-            // Quiz End: SweetAlert Popup
-            Swal.fire({
+               Swal.fire({
                 title: 'Quiz Completed!',
                 text: `Your Total Score: ${scores} / ${questions.length}`,
                 icon: 'success',
                 background: 'rgb(134, 80, 8)',
                 color: 'rgb(219, 214, 208)',
                 confirmButtonText: 'Restart Quiz',
-                confirmButtonColor: 'rgb(134, 80, 8)' // Apne dark lavender theme ke hisab se color adjust kar sakti hain
+                confirmButtonColor: 'rgb(134, 80, 8)' 
             }).then((result) => {
                 if (result.isConfirmed) {
-                    startQuiz(); // Button click karne par quiz dubara reset ho jaye
+                    startQuiz();
                 }
             });
 
         }
-        playQuestion()
+    
+}, 1000);
+
+};
 
 
-    }, 1000);
 
-}
 
 function startQuiz() {
 
@@ -171,7 +195,7 @@ function startQuiz() {
     playQuestion()
 }
 
-function showStartQuizModal() {
+function showStartQuiz() {
     Swal.fire({
         title: 'Welcome to Quiz App!',
         text: 'Are you ready for Quiz?',
@@ -181,13 +205,37 @@ function showStartQuizModal() {
         background: 'rgb(134, 80, 8)',
         color: 'rgb(219, 214, 208)',
         confirmButtonText: 'Start Quiz',
-        confirmButtonColor: 'rgb(134, 80, 8)', // Apne dark theme ke mutabiq adjustment
-        allowOutsideClick: false // Jab tak user click na kare, popup screen par rahe
+        confirmButtonColor: 'rgb(134, 80, 8)', 
+        allowOutsideClick: false 
     }).then((result) => {
         if (result.isConfirmed) {
-            startQuiz(); // Target function jo initial state reset karke playQuestion() chalata hai
+            startQuiz(); 
         }
     });
 }
 
-showStartQuizModal()
+showStartQuiz()
+
+ function pushUserScore(finalScore) {
+     var user = auth.currentUser
+if(user){
+    var scoreRef = ref(db,'quizScores')
+    var scoreData ={
+        email : user.email,
+        score:finalScore,
+        totalQues: questions.length
+    }
+    push(scoreRef, scoreData)
+
+.then(() => {
+  console.log("Data saved successfully!");
+ 
+})
+.catch((error) => {
+    console.log("error to save data!",error.message);
+});
+}
+ }
+pushUserScore(scores)
+
+

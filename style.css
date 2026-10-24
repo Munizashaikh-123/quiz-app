@@ -66,13 +66,13 @@ button{
 }
 
 input[type="radio"] {
-    -webkit-appearance: none; /* Default browser style hatane ke liye */
+    -webkit-appearance: none; 
     appearance: none;
     
     width: 20px;
     height: 20px;
-    border: 2px solid black !important; /* Ab aapka border kaam karega */
-    border-radius: 50%; /* Is se yeh wapas gol (circle) ho jayega */
+    border: 2px solid black !important; 
+    border-radius: 50%;
     outline: none;
     cursor: pointer;
 
